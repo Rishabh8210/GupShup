@@ -1,10 +1,27 @@
+import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
+import Home from './pages/Home'
+import Error from './pages/Error'
 
 function App() {
-
   return (
-    <h1 className='text-3xl font-semibold text-red-700 text-center'>Hello world 👋</h1> 
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='*' element = {<Error />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
 export default App
+
+
+
+
+// / -> Marketing Page
+// /login -> Login page
+// /chat -> 
+// /chat/:chat-id
+// /profile
+// /setting (optional)
