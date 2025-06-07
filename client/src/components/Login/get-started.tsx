@@ -1,5 +1,4 @@
-import { ChevronRight, LockKeyhole, MoveUpRightIcon } from 'lucide-react'
-import React from 'react'
+import { LockKeyhole, MoveUpRightIcon } from 'lucide-react'
 import { Link } from 'react-router'
 
 export const GetStarted = () => {
