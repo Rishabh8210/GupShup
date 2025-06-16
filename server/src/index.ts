@@ -1,16 +1,16 @@
 import express, { NextFunction, Request, Response, urlencoded} from 'express'
 import { PORT } from './config/server-config';
 import ApiRoutes from './routes'
+import { setupDatabase } from './config/db-config';
 
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
-app.use('/api', ApiRoutes);
+// MongoDB Setup
+setupDatabase();
 
-app.get('/hello', (req:Request, res:Response) => {
-    res.json({message: "Hello World !"});
-})
+app.use('/api', ApiRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is Running at PORT:${PORT}`);
