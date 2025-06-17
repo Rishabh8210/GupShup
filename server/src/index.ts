@@ -1,8 +1,8 @@
 import express, { NextFunction, Request, Response, urlencoded} from 'express'
-import { PORT } from './config/server-config';
+import { PORT } from './configs/server-config';
 import ApiRoutes from './routes'
-import { setupDatabase } from './config/db-config';
-import { GlobalErrorHandler } from './middleware/global-error-handler';
+import { setupDatabase } from './configs/db-config';
+import { GlobalErrorHandler } from './middlewares/global-error-handler';
 
 const app = express()
 app.use(express.json())
