@@ -39,9 +39,7 @@ export const otpRequestValidator = (req: Request, res: Response, next: NextFunct
 
 export const validateOTPRequest = (req: Request, res: Response, next: NextFunction) => {
     try {
-        validOtpSchema.parse({
-            body: req.body
-        })
+        validOtpSchema.parse(req.query)
 
         next();
     } catch (error) {

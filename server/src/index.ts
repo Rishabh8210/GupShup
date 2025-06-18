@@ -3,10 +3,12 @@ import { PORT } from './configs/server-config';
 import ApiRoutes from './routes'
 import { setupDatabase } from './configs/db-config';
 import { GlobalErrorHandler } from './middlewares/global-error-handler';
+import cors from 'cors'
 
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
+app.use(cors())
 
 // MongoDB Setup
 setupDatabase();

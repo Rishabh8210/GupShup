@@ -31,7 +31,7 @@ const userSchema = new Schema<UserAttributes>({
     },
     phone_number: {
         type: String,
-        required: [false, 'Phone number is an optional field'],
+        sparse: true,
         trim: true,
         unique: true
     },

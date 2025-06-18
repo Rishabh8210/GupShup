@@ -40,9 +40,9 @@ class AuthController {
         }
     }
 
-    verifyOTP = async (req: Request<{}, {}, validOtpInput>, res: Response) => {
-        const { email, entered_otp } = req.body;
-
+    verifyOTP = async (req: Request<{}, {}, {},validOtpInput>, res: Response) => {
+        const { email, entered_otp } = req.query;
+        console.log(email, entered_otp);
         try {
             const isVerified = await this.authService.verifyOTP(email, entered_otp);
             if(isVerified){

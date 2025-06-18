@@ -10,10 +10,8 @@ export const otpSchema = z.object({
 export type otpInput = z.infer<typeof otpSchema>['body'];
 
 export const validOtpSchema = z.object({
-    body: z.object({
-        email: z.string().email(),
-        entered_otp: z.string().length(8)
-    })
+    email: z.string().email(),
+    entered_otp: z.string().length(8)
 })
 
-export type validOtpInput = z.infer<typeof validOtpSchema>['body'];
+export type validOtpInput = z.infer<typeof validOtpSchema>;
