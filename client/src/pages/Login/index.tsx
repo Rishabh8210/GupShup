@@ -20,7 +20,7 @@ const Login = () => {
             <PlainHeader />
             <div className="pt-12 w-full flex justify-center items-center px-3 sm:px-5 lg:px-9">
                 {step === 0 && <LoginForm formData={formData} setFormData = {setFormData} step={step} setStep = {setStep} />}
-                {step === 1 && <OtpValidation formData={formData} setFormData = {setFormData} setStep = {setStep} />}
+                {step === 1 && <OtpValidation formData={formData} setStep = {setStep} />}
             </div>
             <GetStarted />
         </div>

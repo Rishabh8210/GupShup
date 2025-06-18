@@ -1,6 +1,5 @@
 import { ChevronRight, Eye, EyeClosed, Mail } from "lucide-react"
 import { useState } from "react"
-import { Loader } from "lucide-react";
 import { Link } from "react-router"
 import { NextButton } from "../ui/next-button";
 import type { AuthticationAttributes } from "../../types/auth-types"
@@ -45,7 +44,8 @@ export const LoginForm = ({ formData, setFormData, step, setStep }: FormData) =>
 
                 console.log("Backend Respons", respone.data);
             } catch (error) {
-
+                console.log("Error while sending OTP", error);
+                setError('Failed to send OTP, plese try again')
             }
 
             setStep(step + 1);

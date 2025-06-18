@@ -1,18 +1,15 @@
-import { ChevronRight, Eye, EyeClosed, Mail } from "lucide-react"
-import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router"
+import { useState } from "react"
+import { useNavigate } from "react-router"
 import { NextButton } from "../ui/next-button"
 import type { AuthticationAttributes } from "../../types/auth-types"
-import { LoginForm } from "../../components/Login/login-form"
 import axios from "axios"
 
 interface FormData {
     formData: AuthticationAttributes
-    setFormData: React.Dispatch<React.SetStateAction<AuthticationAttributes>>;
     setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const OtpValidation = ({ formData, setFormData, setStep }: FormData) => {
+export const OtpValidation = ({ formData, setStep }: FormData) => {
     const [otp, setOTP] = useState('');
     const [error, setError] = useState('');
 
