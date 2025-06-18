@@ -16,4 +16,14 @@ export class OTPRepository{
             throw new Error('Failed to create OTP');
         }
     }
+
+    findByEmail = async (email: string) => {
+        try {
+            const otpByMail = await Otp.findOne({email});
+            return otpByMail;
+        } catch (error) {
+            console.log("Error(Otp-Repository): Failed to get OTP", error)
+            throw new Error('Failed to get OTP');
+        }
+    }
 }

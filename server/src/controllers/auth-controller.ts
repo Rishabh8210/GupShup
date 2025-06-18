@@ -1,7 +1,7 @@
 import { SignupUserInput } from "../schemas/auth/signup-schema";
 import { Request, Response } from "express";
 import AuthService from "../services/auth-service";
-import { otpInput } from "../schemas/auth/otp-schema";
+import { otpInput, validOtpInput } from "../schemas/auth/otp-schema";
 
 class AuthController {
     private authService: AuthService
@@ -20,7 +20,7 @@ class AuthController {
             })
         } catch (error) {
             console.log("Error(Auth-Controller): Failed to signup", error);
-            res.status(500).json({message:"Internal Server Error"})
+            res.status(500).json({message:"Internal Server Error", error: error})
         }
     }
 
@@ -36,7 +36,33 @@ class AuthController {
             })
         } catch(error){
             console.log("Error(Auth-Controller): Failed to get OTP", error);
-            res.status(500).json({message:"Internal Server Error"})
+            res.status(500).json({message:"Internal Server Error", error: error})
+        }
+    }
+
+    verifyOTP = async (req: Request<{}, {}, validOtpInput>, res: Response) => {
+        const { email, entered_otp } = req.body;
+
+        try {
+            const isVerified = await this.authService.verifyOTP(email, entered_otp);
+            if(isVerified){
+                res.status(200).json({
+                    message: 'OTP verified successfully',
+                    success: true,
+                    data: isVerified,
+                    error: null
+                }) 
+            } else {
+                res.status(400).json({
+                    message: 'Invalid or expired OTP',
+                    success: false,
+                    data: 'Invalid or expired OTP',
+                    error: null
+                })
+            } 
+        } catch (error) {
+            console.log("Error(Auth-Controller): Failed to get OTP", error);
+            res.status(500).json({message:"Internal Server Error", error: error})
         }
     }
 }

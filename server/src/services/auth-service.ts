@@ -2,7 +2,7 @@ import { OTPRepository } from "../repositories/otp-repository";
 import { UserRepository } from "../repositories/user-repository";
 import { OtpAttributes } from "../types/otp-types";
 import { UserAttributes } from "../types/user-types";
-import { generateOtp, generateSecret } from "../utils/otp-helper";
+import { generateOtp, generateSecret, verifyOtp } from "../utils/otp-helper";
 import { sendMail } from "./mail-service";
 
 class AuthService {
@@ -43,6 +43,25 @@ class AuthService {
 
         } catch (error) {
             console.log("Error(OTP-Service): Failed to generate and send otp");
+            throw error
+        }
+    }
+
+    verifyOTP = async (email: string, entered_otp: string) => {
+        try {
+            const existingOtp = await this.otpRepository.findByEmail(email);
+            if(!existingOtp){
+                throw new Error("OTP not found")
+            }
+
+            if(existingOtp.otp !== entered_otp){
+                return false;
+            }
+
+            const isVerified = verifyOtp(entered_otp, existingOtp.secret);
+            return isVerified;
+        } catch (error) {
+            console.log("Error(OTP-Service): Failed to verify otp");
             throw error
         }
     }
