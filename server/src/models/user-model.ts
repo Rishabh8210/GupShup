@@ -44,6 +44,11 @@ const userSchema = new Schema<UserAttributes>({
         type: String,
         required: [false, 'User profile pic is an optional field'],
         trim: true
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+        required: false
     }
 }, {
     timestamps: true

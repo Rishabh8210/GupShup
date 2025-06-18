@@ -7,4 +7,5 @@ export interface UserAttributes {
     country_code?: number;
     bio?: string;
     profile_pic?: string;
+    isVerified?: boolean
 }
