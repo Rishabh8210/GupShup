@@ -4,13 +4,11 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Error from './pages/Error'
 import Profile from './pages/Profile'
-import OTP from './pages/OTP'
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/otp' element={<OTP />} />
         <Route path='/login' element={<Login />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='*' element = {<Error />} />
