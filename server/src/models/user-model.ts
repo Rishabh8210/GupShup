@@ -74,5 +74,5 @@ userSchema.pre('save', async function (next) {
     next();
 })
 
-const User = model<UserAttributes>('User', userSchema);
+const User = model<UserAttributes>('Users', userSchema);
 export default User;

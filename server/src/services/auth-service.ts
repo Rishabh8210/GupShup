@@ -1,11 +1,17 @@
+import { OTPRepository } from "../repositories/otp-repository";
 import { UserRepository } from "../repositories/user-repository";
+import { OtpAttributes } from "../types/otp-types";
 import { UserAttributes } from "../types/user-types";
+import { generateOtp, generateSecret } from "../utils/otp-helper";
+import { sendMail } from "./mail-service";
 
 class AuthService {
     private userRepository: UserRepository;
+    private otpRepository: OTPRepository
     
     constructor(){
         this.userRepository = new UserRepository();
+        this.otpRepository = new OTPRepository();
     }
     
     signup = async (userData: UserAttributes) => {
@@ -15,6 +21,29 @@ class AuthService {
         } catch (error) {
             console.log("Error(User-Service): Failed to create user", error);
             throw error;
+        }
+    }
+
+    sendOTP = async (email: string, email_type: string) => {
+        try {
+            const secret = generateSecret();
+            const otp = generateOtp(secret);
+
+            const otpData: OtpAttributes = {
+                otp,
+                email,
+                secret
+            }
+
+            const saveOtp = await this.otpRepository.createOTP(otpData);
+
+            // send mail
+            const mailStatus = await sendMail(email, otp);
+            return "OTP verification mail sent successfully"
+
+        } catch (error) {
+            console.log("Error(OTP-Service): Failed to generate and send otp");
+            throw error
         }
     }
 }
