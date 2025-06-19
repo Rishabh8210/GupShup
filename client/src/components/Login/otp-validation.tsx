@@ -61,17 +61,17 @@ export const OtpValidation = ({ formData, setStep }: FormData) => {
             </div>
 
             <>
-                <div className="flex flex-col text-center gap-3 justify-center">
+                <div className="flex flex-col text-center justify-center items-center gap-7">
                     <label className="text-sm text-center">Enter OTP</label>
                     <input
                         type="text"
                         className="border p-2 rounded-md text-center w-80"
                         placeholder="Enter OTP"
-                        onChange={(e) => setOTP(e.target.value)} // Handle OTP input
+                        onChange={(e) => setOTP(e.target.value)}
                     />
                 </div>
-                <p className="text-lg font-semibold text-red-600">{error}</p>
-                <div className="flex justify-center" onClick={() => handleFormClick()}>
+                <div className="flex flex-col items-center gap-5 justify-center" onClick={() => handleFormClick()}>
+                    <p className="text-lg font-semibold text-red-600">{error}</p>
                     <NextButton />
                 </div>
                 
