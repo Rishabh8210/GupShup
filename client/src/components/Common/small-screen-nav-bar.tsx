@@ -20,6 +20,9 @@ export const SmallScreenNavigation = ({ setNavOpen }: ICloseButton) => {
                 <img className="h-9" src="/gupshuplogo.svg" alt="#LOGO" />
             </div>
             <div className="h-fit w-full">
+                 <Link to={'/login'} className="h-20 px-5 w-full flex items-center border-b border-zinc-300">
+                    <p className="text-3xl">Login</p>
+                </Link>
                 <Link to={'/'} className="h-20 px-5 w-full flex items-center border-b border-zinc-300">
                     <p className="text-3xl">Home</p>
                 </Link>
