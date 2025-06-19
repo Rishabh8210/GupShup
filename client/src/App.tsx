@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Error from './pages/Error'
 import Profile from './pages/Profile'
+import Chat from './pages/Chat'
 function App() {
   return (
     <BrowserRouter>
@@ -11,6 +12,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/profile' element={<Profile />} />
+         <Route path='/chat' element={<Chat />} />
         <Route path='*' element = {<Error />} />
       </Routes>
     </BrowserRouter>
