@@ -1,10 +1,9 @@
 import { useState } from "react"
-import { useNavigate } from "react-router"
 import { NextButton } from "../ui/next-button"
 import type { AuthticationAttributes } from "../../types/auth-types"
 import axios from "axios"
 
-interface FormData {
+export interface FormData {
     formData: AuthticationAttributes
     setStep: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -12,8 +11,6 @@ interface FormData {
 export const OtpValidation = ({ formData, setStep }: FormData) => {
     const [otp, setOTP] = useState('');
     const [error, setError] = useState('');
-
-    const navigate = useNavigate();
 
     const BACKEND_URL = import.meta.env.VITE_API_URL;
 
@@ -32,15 +29,12 @@ export const OtpValidation = ({ formData, setStep }: FormData) => {
             })
             
             if(response.data){
-                const registerAcc = await axios.post(`${BACKEND_URL}/auth/sign-up`, {
-                    ...formData
-                })
+                // const registerAcc = await axios.post(`${BACKEND_URL}/auth/sign-up`, {
+                //     ...formData
+                // })
 
-                if(registerAcc.data){
-                    alert("Ho gyii ji registration")
-                    navigate('/')
-                    
-                }
+                console.log("OTP verification successful");
+                setStep((prev) => prev + 1);
             }
 
         } catch (error) {

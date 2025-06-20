@@ -7,14 +7,13 @@ import { signupSchema } from "../../schemas/auth/sign-up-schema";
 import { LoaderButton } from "../ui/loader";
 import axios from "axios";
 
-interface FormData {
+export interface FormData {
     formData: AuthticationAttributes
     setFormData: React.Dispatch<React.SetStateAction<AuthticationAttributes>>;
-    step: number;
-    setStep: (val: number) => void;
+    setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const LoginForm = ({ formData, setFormData, step, setStep }: FormData) => {
+export const LoginForm = ({ formData, setFormData, setStep }: FormData) => {
     const [email, setEmail] = useState('');
     const [loader, setLoader] = useState(false);
     const [password, setPassword] = useState('');
@@ -43,12 +42,12 @@ export const LoginForm = ({ formData, setFormData, step, setStep }: FormData) =>
                 })
 
                 console.log("Backend Respons", respone.data);
+                setStep((prev) => prev + 1);
             } catch (error) {
                 console.log("Error while sending OTP", error);
                 setError('Failed to send OTP, plese try again')
             }
 
-            setStep(step + 1);
         } else {
             setError('Please enter valid input');
         }
