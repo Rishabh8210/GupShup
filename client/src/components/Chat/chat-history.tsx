@@ -6,7 +6,7 @@ import { chatHistory } from "../../constant/dummy-chathistory"
 import { ChatUserCart } from "./chat-user-cart"
 
 
-export const ChatMenu = () => {
+export const ChatHistory = () => {
     return (
         <div className="h-full w-full sm:flex-1 lg:max-w-120 lg:border-r shrink-0 border-[#2f2f64] flex flex-col gap-3 px-3 lg:px-5 pt-2 overflow-hidden">
             <div className="w-full h-fit flex items-center justify-between">

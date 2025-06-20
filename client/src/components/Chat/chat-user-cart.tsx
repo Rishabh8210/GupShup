@@ -13,7 +13,7 @@ export const ChatUserCart = ({ history }: {history: ChatHistoryy}) => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex items-center justify-between px-2 py-5 rounded-2xl hover:bg-blue-300/15 cursor-pointer group" onClick={() => navigate(`/chat/${history.name}`)}>
+        <div className="flex items-center justify-between px-2 py-5 rounded-2xl hover:bg-blue-300/15 cursor-pointer group" onClick={() => navigate(`/chat/${history.name}`)} onDoubleClick={() => navigate('/chat')}>
             <div className="w-12 h-12 overflow-hidden rounded-full shrink-0">
                 <img src={history.src || "./hero-section.jpg"} alt="#user profile photo" className="object-cover" />
             </div>
