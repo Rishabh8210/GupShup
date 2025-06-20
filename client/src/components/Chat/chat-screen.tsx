@@ -1,11 +1,15 @@
-import { useParams } from "react-router"
-import { Mic, Plus, Sticker } from "lucide-react"
+import { useNavigate, useParams } from "react-router"
+import { Mic, MoveLeft, Plus, Sticker } from "lucide-react"
 
 export const ChatScreen = () => {
     const { roomId } = useParams()
+    const navigate = useNavigate();
     return (
-        <div className="absolute top-0 left-0 lg:flex flex-col lg:flex-1 w-full h-screen lg:relative overflow-hidden">
+        <div className="bg-[#020015] fixed top-0 flex left-0 sm:left-16 lg:left-0 lg:flex flex-col lg:flex-1 w-full h-screen lg:relative overflow-hidden z-50">
             <div className="w-full h-fit shrink-0 p-3 flex gap-3 border-b border-blue-300/15">
+                <span className="h-full w-fit flex justify-center items-center" onClick={() => navigate('/chat')}>
+                    <MoveLeft className="p-2 rounded-full cursor-pointer hover:bg-blue-300/15" size={40} strokeWidth={2} color="#FFFFFF" />
+                </span>
                 <span className="h-fit w-fit flex">
                     <img className="h-13 w-13 object-cover rounded-full" src={'/hero-section.jpg'} alt="#PFP" />
                 </span>
