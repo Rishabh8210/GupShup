@@ -8,7 +8,7 @@ import { ChatUserCart } from "./chat-user-cart"
 
 export const ChatMenu = () => {
     return (
-        <div className="h-full w-120 border-r border-white overflow-auto flex flex-col gap-3 px-5 pt-2">
+        <div className="h-full w-120 border-r border-[#2f2f64] overflow-auto flex flex-col gap-3 px-5 pt-2">
             <div className="w-full h-fit px-1 flex items-center justify-between">
                 <h1 className="text-white text-2xl font-semibold">GupShup</h1>
                 <span className="flex gap-5 px-2 items-center">

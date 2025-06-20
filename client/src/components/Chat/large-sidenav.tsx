@@ -4,7 +4,7 @@ import { Users } from "lucide-react"
 import { MessageSquareText } from "lucide-react"
 export const ChatSideNav = () => {
     return (
-        <div className="h-full w-16 bg-[#000428] flex flex-col justify-between p-2 border-r border-zinc-500">
+        <div className="h-full w-16 bg-[#000428] flex flex-col justify-between p-2 border-r border-[#2f2f64]">
             <div className="h-fit w-full flex flex-col items-center pt-2 gap-2.5">
                 <button className="h-fit p-2 bg-blue-300/15 cursor-pointer rounded-full w-fit flex justify-center items-center relative">
                     <MessageSquareText size={24} color="#FFFFFF" strokeWidth={2} />
