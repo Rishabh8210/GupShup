@@ -5,6 +5,8 @@ import Login from './pages/Login'
 import Error from './pages/Error'
 import Profile from './pages/Profile'
 import Chat from './pages/Chat'
+import { ChatScreen } from './components/Chat/chat-screen'
+import { ChatHome } from './components/Chat/chat-home'
 function App() {
   return (
     <BrowserRouter>
@@ -12,8 +14,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/chat' element={<Chat />} />
-        <Route path='*' element = {<Error />} />
+        <Route path="/chat" element={<Chat />}>
+          <Route index element={<ChatHome />} />       
+          <Route path=":roomId" element={<ChatScreen />} /> 
+        </Route>
+        <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
   )

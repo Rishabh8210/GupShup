@@ -32,16 +32,16 @@ export const ChatMenu = () => {
 
 
             <div className="flex overflow-x-scroll overflow-y-hidden hide-scrollbar py-2 px-1 gap-2 shrink-0">
-                <button className="border border-zinc-500 bg-orange-500/60 rounded-2xl px-3 py-1 transition cursor-pointer">
+                <button className="border border-[#2f2f64] bg-orange-500/60 rounded-2xl px-3 py-1 transition cursor-pointer">
                     <p className="text-white text-center">All</p>
                 </button>
-                <button className="border border-zinc-500 hover:bg-blue-300/15 rounded-2xl px-3 py-1 transition cursor-pointer">
+                <button className="border border-[#2f2f64] hover:bg-blue-300/15 rounded-2xl px-3 py-1 transition cursor-pointer">
                     <p className="text-white text-center">Unread</p>
                 </button>
-                <button className="border border-zinc-500 hover:bg-blue-300/15 rounded-2xl px-3 py-1 transition cursor-pointer">
+                <button className="border border-[#2f2f64] hover:bg-blue-300/15 rounded-2xl px-3 py-1 transition cursor-pointer">
                     <p className="text-white text-center">Favorites</p>
                 </button>
-                <button className="border border-zinc-500 hover:bg-blue-300/15 rounded-2xl px-3 py-1 transition cursor-pointer">
+                <button className="border border-[#2f2f64] hover:bg-blue-300/15 rounded-2xl px-3 py-1 transition cursor-pointer">
                     <p className="text-white text-center">Groups</p>
                 </button>
             </div>
