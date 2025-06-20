@@ -11,8 +11,8 @@ interface ChatHistoryy {
 export const ChatUserCart = ({ history }: {history: ChatHistoryy}) => {
     return (
         <div className="flex items-center justify-between px-2 py-5 rounded-2xl hover:bg-blue-300/15 cursor-pointer group">
-            <div className="flex-shrink-0">
-                <img src={history.src || "./hero-section.jpg"} alt="#user profile photo" className="w-12 h-12 rounded-full object-cover" />
+            <div className="w-12 h-12 overflow-hidden rounded-full shrink-0">
+                <img src={history.src || "./hero-section.jpg"} alt="#user profile photo" className="object-cover" />
             </div>
             <div className="flex flex-1 flex-col px-4 overflow-hidden">
                 <div className="flex justify-between items-center w-full">

@@ -2,7 +2,7 @@ import { DownloadButton } from "../ui/download-button"
 import { Lock } from "lucide-react"
 export const ChatHome = () => {
     return (
-        <div className="text-white flex flex-1 justify-center items-center h-screen relative">
+        <div className="text-white hidden lg:flex lg:flex-1 px-9 w-full justify-center items-center h-screen relative">
             <div className="flex flex-col justify-center items-center gap-4">
                 <img
                     className="w-full max-w-[22rem] p-4"
@@ -10,7 +10,7 @@ export const ChatHome = () => {
                     alt="Gupshup application logo"
                 />
                 <h1 className="text-4xl font-bold">Download Gupshup</h1>
-                <p className="">
+                <p className="text-center">
                     Make calls, share your screen, and get a faster experience when you use the Gupshup app.
                 </p>
                 <DownloadButton />

@@ -24,6 +24,7 @@ export const LoginForm = ({ formData, setFormData, setStep }: FormData) => {
     const BACKEND_URL = import.meta.env.VITE_API_URL;
 
     const handleFormClick = async () => {
+        setError('')
         const response = signupSchema.safeParse({
             email,
             password,
@@ -46,6 +47,7 @@ export const LoginForm = ({ formData, setFormData, setStep }: FormData) => {
             } catch (error) {
                 console.log("Error while sending OTP", error);
                 setError('Failed to send OTP, plese try again')
+                setLoader(false)
             }
 
         } else {

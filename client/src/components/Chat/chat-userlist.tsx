@@ -8,10 +8,10 @@ import { ChatUserCart } from "./chat-user-cart"
 
 export const ChatMenu = () => {
     return (
-        <div className="h-full w-120 border-r border-[#2f2f64] overflow-auto flex flex-col gap-3 px-5 pt-2">
-            <div className="w-full h-fit px-1 flex items-center justify-between">
+        <div className="h-full w-full sm:flex-1 lg:max-w-120 lg:border-r shrink-0 border-[#2f2f64] flex flex-col gap-3 px-3 lg:px-5 pt-2 overflow-hidden">
+            <div className="w-full h-fit flex items-center justify-between">
                 <h1 className="text-white text-2xl font-semibold">GupShup</h1>
-                <span className="flex gap-5 px-2 items-center">
+                <span className="flex gap-5 items-center">
                     <span className="cursor-pointer p-2 rounded-full  hover:bg-blue-300/15">
                         <MessageSquarePlus size={24} color="#FFFFFF" strokeWidth={2} />
                     </span>
@@ -31,7 +31,7 @@ export const ChatMenu = () => {
             </div>
 
 
-            <div className="flex py-2 px-1 gap-2 shrink-0">
+            <div className="flex overflow-x-scroll overflow-y-hidden hide-scrollbar py-2 px-1 gap-2 shrink-0">
                 <button className="border border-zinc-500 bg-orange-500/60 rounded-2xl px-3 py-1 transition cursor-pointer">
                     <p className="text-white text-center">All</p>
                 </button>
