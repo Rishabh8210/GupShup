@@ -115,3 +115,28 @@ export const chatHistory = [
 
   }
 ];
+
+
+
+export const dummyMessages = [
+  { sender: "1", receiver: "2", message: "Yo bro, what’s up?" },
+  { sender: "1", receiver: "2", message: "You free tonight?" },
+  { sender: "2", receiver: "1", message: "Just got home. What’s going on?" },
+  { sender: "1", receiver: "2", message: "Thinking of hitting that new cafe near 5th street." },
+  { sender: "1", receiver: "2", message: "Wanna join?" },
+  { sender: "2", receiver: "1", message: "Sounds chill. What time?" },
+  { sender: "2", receiver: "1", message: "Also who else is coming?" },
+  { sender: "1", receiver: "2", message: "Maybe around 7. Just us for now." },
+  { sender: "1", receiver: "2", message: "Unless you wanna call someone?" },
+  { sender: "2", receiver: "1", message: "Let’s keep it lowkey." },
+  { sender: "2", receiver: "1", message: "Been a hectic week." },
+  { sender: "2", receiver: "1", message: "I could use some chill time." },
+  { sender: "1", receiver: "2", message: "Facts. Same here bro." },
+  { sender: "1", receiver: "2", message: "I'll grab a table if I get there first." },
+  { sender: "2", receiver: "1", message: "Cool. I might be 10 mins late tho." },
+  { sender: "2", receiver: "1", message: "Traffic’s been wild lately." },
+  { sender: "1", receiver: "2", message: "No stress. Just don’t ghost me like last time 😂" },
+  { sender: "1", receiver: "2", message: "Also wear something warm, it’s chilly out." },
+  { sender: "2", receiver: "1", message: "Bet. Hoodie weather 😎" },
+  { sender: "2", receiver: "1", message: "See you in a bit!" }
+];
