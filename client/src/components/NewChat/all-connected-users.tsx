@@ -42,7 +42,7 @@ export const AllConnectedUsers = () => {
                     }
                 </div>
                 {
-                    !search && 
+                    search && 
                     <div className="absolute h-fit w-full flex items-center bg-[#020015] transition-all">
                         <div className="h-fit w-full flex items-center p-2 pr-10 gap-2 rounded-full z-50 bg-blue-300/15">
                             <button onClick={() => setSearch(!search)}><MoveLeft className="h-10 w-10 p-2 rounded-full hover:bg-blue-300/15 cursor-pointer" color="#FFFFFF" /></button>
