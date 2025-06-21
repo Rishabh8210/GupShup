@@ -2,10 +2,9 @@ import { MessageSquarePlus, ScanQrCode } from "lucide-react"
 import { EllipsisVertical } from "lucide-react"
 import { Search } from "lucide-react"
 
-import { chatHistory } from "../../constant/dummy-chathistory"
-import { ChatUserCart } from "./chat-user-cart"
 import { Link, useNavigate } from "react-router"
 import { useState } from "react"
+import { ChatList } from "./chat-list"
 
 
 export const ChatHistory = () => {
@@ -28,7 +27,7 @@ export const ChatHistory = () => {
                         <Link to={'/starred-message'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Starred</Link>
                         <Link to={'/setting'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Setting</Link>
                         <span className="h-0.5 w-full bg-[#2f2f64]"></span>
-                        <Link to={'/logout'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Logout</Link>
+                        <Link to={'/login'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Logout</Link>
                         {/* <Link to={'/read-all'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">New chat</Link> */}
                     </div>}
                 </div>
@@ -58,15 +57,7 @@ export const ChatHistory = () => {
                     <p className="text-orange-100/90 text-center">Groups</p>
                 </button>
             </div>
-            <div className="h-fit overflow-y-auto overflow-x-hidden hide-scrollbar py-1">
-                {
-                    chatHistory.map((history, ind) => {
-                        return (
-                            <ChatUserCart key={ind} history={history} />
-                        )
-                    })
-                }
-            </div>
+            <ChatList />
             <span className="absolute bottom-6 h-14 w-14 flex justify-center items-center right-6 bg-orange-600 cursor-pointer p-2 rounded-full  hover:bg-orange-500 transition-all" onClick={() => navigate('/new-chat')}>
                 <MessageSquarePlus size={24} color="#FFFFFF" strokeWidth={2} />
             </span>

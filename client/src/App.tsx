@@ -7,6 +7,7 @@ import Error from './pages/Error'
 import Chat from './pages/Chat'
 import { ChatScreen } from './components/Chat/chat-screen'
 import { ChatHome } from './components/Chat/chat-home'
+import NewChat from './pages/New Chat'
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<ChatHome />} />       
           <Route path=":roomId" element={<ChatScreen />} /> 
         </Route>
+        <Route path='/new-chat' element={<NewChat />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
