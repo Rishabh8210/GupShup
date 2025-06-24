@@ -18,9 +18,9 @@ class AuthController {
                 message: 'User sign-up successfully',
                 error: null
             })
-        } catch (error) {
+        } catch (error:any) {
             console.log("Error(Auth-Controller): Failed to signup", error);
-            res.status(500).json({message:"Internal Server Error", error: error})
+            res.status(500).json({message:error.message, error: error})
         }
     }
 
@@ -34,9 +34,9 @@ class AuthController {
                 success: true,
                 error: null
             })
-        } catch(error){
-            console.log("Error(Auth-Controller): Failed to get OTP", error);
-            res.status(500).json({message:"Internal Server Error", error: error})
+        } catch(error:any){
+            console.log("Error(Auth-Controller): Failed to get OTP", error);    
+            res.status(500).json({message:error.message, error: error})
         }
     }
 

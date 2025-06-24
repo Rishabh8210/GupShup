@@ -12,7 +12,7 @@ export class OTPRepository{
             const otp = await Otp.create(otdData);
             return otp;
         } catch (error) {
-            console.log("Error(Otp-Repository): Failed to create OTP", error)
+            // console.log("Error(Otp-Repository): Failed to create OTP", error)
             throw new Error('Failed to create OTP');
         }
     }

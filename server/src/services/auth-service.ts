@@ -19,7 +19,7 @@ class AuthService {
             const user = await this.userRepository.createUser(userData);
             return user;
         } catch (error) {
-            console.log("Error(User-Service): Failed to create user", error);
+            // console.log("Error(User-Service): Failed to create user", error);
             throw error;
         }
     }
