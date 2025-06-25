@@ -9,11 +9,10 @@ import { ChatScreen } from './components/Chat/chat-screen'
 import { ChatHome } from './components/Chat/chat-home'
 import NewChat from './pages/New Chat'
 import { SocketProvider } from './context/socket-context'
-import { Analytics } from '@vercel/analytics/next'
+import { Analytics } from '@vercel/analytics/react'
 function App() {
   return (
     <>
-
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
