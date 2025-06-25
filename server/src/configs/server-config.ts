@@ -7,3 +7,4 @@ export const DB_URL = process.env.DB_URL;
 export const SALT = process.env.SALT;
 export const MAIL = process.env.MAIL;
 export const PASS = process.env.PASS;
+export const JWT_SECRET = process.env.JWT_SECRET;

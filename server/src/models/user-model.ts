@@ -38,12 +38,14 @@ const userSchema = new Schema<UserAttributes>({
     bio: {
         type: String,
         required: [false, 'Bio is an optional field'],
-        trim: true
+        trim: true,
+        default: "Hey! there i'm using GupShup"
     },
     profile_pic: {
         type: String,
         required: [false, 'User profile pic is an optional field'],
-        trim: true
+        trim: true,
+        default: ''
     },
     isVerified: {
         type: Boolean,
