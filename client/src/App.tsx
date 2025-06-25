@@ -8,6 +8,7 @@ import Chat from './pages/Chat'
 import { ChatScreen } from './components/Chat/chat-screen'
 import { ChatHome } from './components/Chat/chat-home'
 import NewChat from './pages/New Chat'
+import { SocketProvider } from './context/socket-context'
 function App() {
   return (
     <BrowserRouter>
@@ -15,7 +16,13 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         {/* <Route path='/profile' element={<Profile />} /> */}
-        <Route path="/chat" element={<Chat />}>
+        <Route 
+          path="/chat"
+          element={
+            <SocketProvider>
+              <Chat />
+            </SocketProvider>
+          }>
           <Route index element={<ChatHome />} />       
           <Route path=":roomId" element={<ChatScreen />} /> 
         </Route>
