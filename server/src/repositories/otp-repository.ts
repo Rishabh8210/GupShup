@@ -1,16 +1,30 @@
 import { OtpAttributes } from "../types/otp-types";
 import Otp from "../models/otp-model";
+import { CreateOtpDto } from "../dtos/otp-dto";
 
-export class OTPRepository{
-    createOTP = async (otdData: OtpAttributes) => {
+export class OtpRepository{
+    private static instance: OtpRepository
+    
+    private constructor() {}
+    
+    static getInstance = (): OtpRepository => {
+        if(!this.instance){
+            this.instance = new OtpRepository();
+        }
+
+        return this.instance;
+    }
+
+    create = async (otpData: CreateOtpDto) => {
         try {
-            const existingOtp = await Otp.findOne({email: otdData.email});
-            console.log(existingOtp);
+            const existingOtp = await Otp.findOne({email: otpData.email});
+            
             if(existingOtp){
                 await Otp.deleteMany({email: existingOtp.email});
             }
-            const otp = await Otp.create(otdData);
-            return otp;
+            
+            const newOtp = await Otp.create(otpData);
+            return newOtp;
         } catch (error) {
             // console.log("Error(Otp-Repository): Failed to create OTP", error)
             throw new Error('Failed to create OTP');

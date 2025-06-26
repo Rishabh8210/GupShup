@@ -1,30 +1,34 @@
 import { JwtPayload } from "jsonwebtoken";
-import { OTPRepository } from "../repositories/otp-repository";
-import { UserRepository } from "../repositories/user-repository";
-import { OtpAttributes } from "../types/otp-types";
-import { UserAttributes } from "../types/user-types";
-import { generateOtp, generateSecret, verifyOtp } from "../utils/otp-helper";
-import { sendMail } from "./mail-service";
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET } from "../configs/server-config";
+import { CreateUserDto } from "../dtos/user-dto";
+import { UserService } from "./user-service";
+import { OtpService } from "./Otp-service";
 
 class AuthService {
-    private userRepository: UserRepository;
-    private otpRepository: OTPRepository
-    
-    constructor(){
-        this.userRepository = new UserRepository();
-        this.otpRepository = new OTPRepository();
+    private userService: UserService;
+    private otpService: OtpService
+    private static instance: AuthService
+
+    private constructor(){
+        this.userService = UserService.getInstance();
+        this.otpService = OtpService.getInstance();
     }
 
-    private createToken = (payload: JwtPayload) => {
+    static getInstance = () => {
+        if(!this.instance){
+            this.instance = new AuthService();
+        }
 
+        return this.instance;
+    }
+    
+    private createToken = (payload: JwtPayload) => {
+        
         if(!JWT_SECRET){
             throw new Error('JWT Secret not found')
         }
-
-        console.log("JWT", JWT_SECRET)
-
+        
         try {
             const token = jwt.sign(payload, JWT_SECRET, { expiresIn: 3600000})
             return token;
@@ -33,9 +37,9 @@ class AuthService {
         }
     }
     
-    signup = async (userData: UserAttributes) => {
+    signup = async (userData: CreateUserDto) => {
         try {
-            const user = await this.userRepository.createUser(userData);
+            const user = await this.userService.createUser(userData);
             
             const payload = {
                 id: user.id,
@@ -44,55 +48,13 @@ class AuthService {
             }
             
             const token = this.createToken(payload);
-            console.log("Token: ", token );
+
             return {token, user};
         } catch (error) {
             // console.log("Error(User-Service): Failed to create user", error);
             throw error;
         }
-    }
-
-    sendOTP = async (email: string, email_type: string) => {
-        try {
-            const secret = generateSecret();
-            const otp = generateOtp(secret);
-
-            const otpData: OtpAttributes = {
-                otp,
-                email,
-                secret
-            }
-
-            const saveOtp = await this.otpRepository.createOTP(otpData);
-
-            // send mail
-            const mailStatus = await sendMail(email, otp);
-            return "OTP verification mail sent successfully"
-
-        } catch (error) {
-            console.log("Error(OTP-Service): Failed to generate and send otp");
-            throw error
-        }
-    }
-
-    verifyOTP = async (email: string, entered_otp: string) => {
-        try {
-            const existingOtp = await this.otpRepository.findByEmail(email);
-            if(!existingOtp){
-                throw new Error("OTP not found")
-            }
-
-            if(existingOtp.otp !== entered_otp){
-                return false;
-            }
-
-            const isVerified = verifyOtp(entered_otp, existingOtp.secret);
-            return isVerified;
-        } catch (error) {
-            console.log("Error(OTP-Service): Failed to verify otp");
-            throw error
-        }
-    }
+    }    
 }
 
 export default AuthService

@@ -48,11 +48,6 @@ const userSchema = new Schema<UserDocument>({
         required: [false, 'User profile pic is an optional field'],
         trim: true,
         default: ''
-    },
-    isVerified: {
-        type: Boolean,
-        default: false,
-        required: false
     }
 }, {
     timestamps: true
