@@ -1,7 +1,9 @@
 import { Document, model, Schema } from "mongoose";
 import { OtpAttributes } from "../types/otp-types";
 
-const otpSchema = new Schema<OtpAttributes>({
+export interface OtpDocument extends OtpAttributes, Document {}
+
+const otpSchema = new Schema<OtpDocument>({
     otp: {
         type: String,
         required: true
@@ -20,5 +22,5 @@ const otpSchema = new Schema<OtpAttributes>({
     timestamps: true
 })
 
-const Otp = model<OtpAttributes>('Otps', otpSchema);
+const Otp = model<OtpDocument>('Otps', otpSchema);
 export default Otp;

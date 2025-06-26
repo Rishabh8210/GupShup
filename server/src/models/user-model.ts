@@ -3,7 +3,9 @@ import bcrypt from 'bcrypt'
 import { SALT } from "../configs/server-config";
 import { UserAttributes } from "../types/user-types";
 
-const userSchema = new Schema<UserAttributes>({
+export interface UserDocument extends UserAttributes, Document {}
+
+const userSchema = new Schema<UserDocument>({
     name: {
         type: String,
         required: false,
@@ -76,5 +78,5 @@ userSchema.pre('save', async function (next) {
     next();
 })
 
-const User = model<UserAttributes>('Users', userSchema);
+const User = model<UserDocument>('Users', userSchema);
 export default User;
