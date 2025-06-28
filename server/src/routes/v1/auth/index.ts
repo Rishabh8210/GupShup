@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { otpRequestValidator, signupAuthValidator, validateOTPRequest } from "../../../middlewares/auth-request-validator";
+import { otpRequestValidator, signupAuthValidator, validateOTPRequest } from "../../../middlewares/auth-validator";
 import AuthController from "../../../controllers/auth-controller";
 import { OtpController } from "../../../controllers/otp-controller";
 

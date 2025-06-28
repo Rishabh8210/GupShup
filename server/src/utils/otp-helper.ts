@@ -19,7 +19,7 @@ export function generateOtp(secret: string){
 }
 
 // Verify OTP
-export function verifyOtp(enteredOtp: string, secret: string) {
+export function validateOtp(enteredOtp: string, secret: string) {
     const isValid = authenticator.check(enteredOtp, secret);
     return isValid;
 }

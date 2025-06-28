@@ -4,6 +4,7 @@ import { JWT_SECRET } from "../configs/server-config";
 import { CreateUserDto } from "../dtos/user-dto";
 import { UserService } from "./user-service";
 import { OtpService } from "./Otp-service";
+import { TokenPayload } from "../types/jwt-types";
 
 class AuthService {
     private userService: UserService;
@@ -41,7 +42,7 @@ class AuthService {
         try {
             const user = await this.userService.createUser(userData);
             
-            const payload = {
+            const payload: JwtPayload = {
                 id: user.id,
                 name: user.name,
                 email: user.email

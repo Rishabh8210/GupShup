@@ -7,6 +7,7 @@ import cors from 'cors'
 import http from 'http'
 import { Server as SocketServer } from 'socket.io';
 import { setupSocketChat } from './routes/v1/chat/socket';
+import { extractToken, verifyToken } from './utils/jwt-helper';
 
 
 const app = express()
@@ -29,6 +30,23 @@ const io = new SocketServer(server, {
 
 io.on('connection', (socket) => {
     console.log("User is conneceted", socket.id);
+
+    io.use((socket, next) => {
+        const token = extractToken(socket);
+        
+        if(!token){
+            return next(new Error('Authentication token is missing'))
+        }
+
+        try {
+            const decoded = verifyToken(token);
+            socket.data = decoded;
+            next();
+        } catch (error) {
+            return next(new Error("Invalid token or token is expired"))
+        }
+    })
+
     setupSocketChat(socket, io);
 })
 

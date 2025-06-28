@@ -8,7 +8,7 @@ export interface UserDocument extends UserAttributes, Document {}
 const userSchema = new Schema<UserDocument>({
     name: {
         type: String,
-        required: false,
+        required: true,
         trim: true
     },
     email: {
