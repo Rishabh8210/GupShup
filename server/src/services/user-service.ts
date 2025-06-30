@@ -56,4 +56,23 @@ export class UserService {
             throw error;
         }
     }
+
+    getUserById = async(id: string) => {
+        try {
+            if(!id){
+                throw new Error("User-Id not found")
+            }
+
+            const user = await this.userRepository.getById(id);
+            
+            if(!user){
+                throw new Error("No user found with this id");
+            }
+
+            return user;
+        } catch (error) {
+            console.log("Error(UserService): Failed to get user", error);
+            throw error;
+        }
+    }
 }

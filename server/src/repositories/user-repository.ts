@@ -58,4 +58,39 @@ export class UserRepository {
             throw new Error("Internal server error");
         }
     }
+
+    updateById = async(id: string) => {
+        try {
+            const user = await User.findOneAndUpdate({
+                _id: id
+            })
+
+            return user;
+        } catch (error) {
+            console.log("Error: ", error);
+            throw new Error("Internal server error")
+        }
+    }
+
+    updateByFilter = async(filter: FilterUserDto) => {
+        try{
+            const user = await User.findOneAndUpdate(filter);
+            return user;
+        } catch (error) {
+            console.log("Error: ", error);
+            throw new Error("Internal server error");
+        }
+    }
+
+    updateMany = async(filter: FilterUserDto) => {
+        try {
+            const keys = Object.keys(filter);
+            const values = Object.values(filter);
+            const users = await User.updateMany({...keys}, {...values});
+            return users;
+        } catch (error) {
+            console.log("Error: ", error);
+            throw new Error("Internal server error");
+        }
+    }
 }
