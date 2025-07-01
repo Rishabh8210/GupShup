@@ -22,5 +22,5 @@ const otpSchema = new Schema<OtpDocument>({
     timestamps: true
 })
 
-const Otp = model<OtpDocument>('Otps', otpSchema);
+const Otp = model<OtpDocument>('Otp', otpSchema);
 export default Otp;

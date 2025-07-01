@@ -29,7 +29,6 @@ const userSchema = new Schema<UserDocument>({
     },
     country_code: {
         type: Number,
-        required: false,
     },
     phone_number: {
         type: String,
@@ -39,13 +38,11 @@ const userSchema = new Schema<UserDocument>({
     },
     bio: {
         type: String,
-        required: [false, 'Bio is an optional field'],
         trim: true,
         default: "Hey! there i'm using GupShup"
     },
     profile_pic: {
         type: String,
-        required: [false, 'User profile pic is an optional field'],
         trim: true,
         default: ''
     }
@@ -73,5 +70,5 @@ userSchema.pre('save', async function (next) {
     next();
 })
 
-const User = model<UserDocument>('Users', userSchema);
+const User = model<UserDocument>('User', userSchema);
 export default User;
