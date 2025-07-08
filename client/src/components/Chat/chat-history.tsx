@@ -3,13 +3,27 @@ import { EllipsisVertical } from "lucide-react"
 import { Search } from "lucide-react"
 
 import { Link, useNavigate } from "react-router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ChatList } from "./chat-list"
+import type { Socket } from "socket.io-client"
+import { useSocketContext } from "../../context/socket-context"
 
 
 export const ChatHistory = () => {
     const navigate = useNavigate()
     const [openOption, setOption] = useState(false)
+
+    const socket = useSocketContext()
+
+    if(!socket){
+        return <h1>Loadinggggggg</h1>
+    }
+
+    function handleClick(){
+        localStorage.clear();
+        navigate('/')
+    }
+
     return (
         <div className="h-full w-full sm:flex-1 lg:max-w-120 lg:border-r shrink-0 border-[#2f2f64] flex flex-col gap-3 px-3 lg:px-5 pt-2 overflow-hidden relative">
             <div className="w-full h-fit flex items-center justify-between">
@@ -27,7 +41,7 @@ export const ChatHistory = () => {
                         <Link to={'/starred-message'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Starred</Link>
                         <Link to={'/setting'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Setting</Link>
                         <span className="h-0.5 w-full bg-[#2f2f64]"></span>
-                        <Link to={'/login'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Logout</Link>
+                        <button onClick={() => handleClick()} className="text-base text-left font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">Logout</button>
                         {/* <Link to={'/read-all'} className="text-base font-semibold block p-2 rounded-lg text-white h-fit w-full hover:bg-blue-300/15">New chat</Link> */}
                     </div>}
                 </div>

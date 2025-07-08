@@ -1,17 +1,25 @@
-import { useNavigate, useParams } from "react-router"
+import { Navigate, useNavigate, useParams } from "react-router"
 import { EllipsisVertical, Mic, MoveLeft, PhoneOutgoing, Plus, SendHorizontal, Sticker } from "lucide-react"
 import { dummyMessages } from "../../constant/dummy-chathistory";
 import { SenderMessage, type Message } from "./sender-message";
 import { ReceiverMessage } from "./receiver-message";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useChatScroll } from "../../hooks/useChatScroll";
+import axios from "axios";
 
 export const ChatScreen = () => {
     const { roomId } = useParams()
+    const [user, setUser] = useState<any>({});
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const [allMessages, setAllMessages] = useState<Message[]>(dummyMessages);
     const [message, setMessage] = useState('');
     const ref = useChatScroll(allMessages);
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return <Navigate to={'/login'} replace />
+    }
 
     function handleSendMessage() {
         if (!message) {
@@ -21,6 +29,39 @@ export const ChatScreen = () => {
         setAllMessages([...allMessages, { message, sender: "1", receiver: '2' }]);
         setMessage('');
     }
+
+    const fetchUserData = async () => {
+        if (!roomId) {
+            setError('No user found');
+            return;
+        }
+
+        try {
+            const user = await axios.get(`http://localhost:3000/api/v1/users/${roomId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (user.data?.success) {
+                console.log("User Data", user.data);
+                setUser(user.data?.data);
+            }
+        } catch (error) {
+            setError('Failed to fetch user-data');
+        }
+    }
+
+    const fetUserMessages = async () => {
+        if (!roomId) {
+            setError('No user found');
+            return;
+        }
+    }
+
+    useEffect(() => {
+        fetchUserData()
+        fetUserMessages();
+    }, [roomId])
 
     return (
         <div className="bg-[#020015] fixed top-0 flex left-0 sm:left-16 lg:left-0 lg:flex flex-col lg:flex-1 w-full sm:max-w-[calc(100vw-4rem)] lg:max-w-full h-screen lg:relative overflow-hidden z-50">
@@ -33,16 +74,16 @@ export const ChatScreen = () => {
                         <img className="h-12 w-12 object-cover rounded-full" src={'/hero-section.jpg'} alt="#PFP" />
                     </span>
                     <span className="flex flex-col gap-0.5">
-                        <h1 className="text-white font-semibold text-lg">{roomId}</h1>
-                        <p className="text-[#b3b3e9ca] text-[13px] font-semibold leading-2">Message Yourself</p>
+                        <h1 className="text-white font-semibold text-lg">{user?.name}</h1>
+                        <p className="text-[#b3b3e9ca] text-[13px] font-semibold leading-2">{(user?._id === roomId) ? 'Message Yourself': `lastseen at: ${user?.updatedAt?.split('T')[1]?.substring(0,8)}`}</p>
                     </span>
                 </div>
                 <div className="h-fit w-fit flex gap-2">
                     <button className="h-10 w-10 rounded-full p-2 cursor-pointer hover:bg-blue-300/15 flex justify-center items-center transition-all">
-                        <PhoneOutgoing onClick={() => handleSendMessage()} size={24} strokeWidth={1.5} color="#FFFFFF" /> 
+                        <PhoneOutgoing onClick={() => handleSendMessage()} size={24} strokeWidth={1.5} color="#FFFFFF" />
                     </button>
                     <button className="h-full w-fit flex justify-center items-center transition-all">
-                        <EllipsisVertical onClick={() => handleSendMessage()} className="p-2 rounded-full cursor-pointer hover:bg-blue-300/15" size={40} strokeWidth={2} color="#FFFFFF" /> 
+                        <EllipsisVertical onClick={() => handleSendMessage()} className="p-2 rounded-full cursor-pointer hover:bg-blue-300/15" size={40} strokeWidth={2} color="#FFFFFF" />
                     </button>
                 </div>
             </div>
