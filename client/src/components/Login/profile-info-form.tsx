@@ -2,13 +2,14 @@ import { Plus, Smile, User } from "lucide-react";
 import { useState } from "react";
 import { NextButton } from "../ui/next-button";
 import type { FormData } from "./login-form";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router";
 
 
 export const ProfileInfo = ({ formData, setStep, setFormData }: FormData) => {
     const [name, setName] = useState('');
     const [profilePic, setProfilePic] = useState('');
+    const [bio, setBio] = useState('');
     const [error, setError] = useState('');
     
     const navigate = useNavigate()
@@ -22,18 +23,36 @@ export const ProfileInfo = ({ formData, setStep, setFormData }: FormData) => {
             setError('Please enter your name')
             return;
         }
-        setFormData({ ...formData, name });
+
+        const updatedData = {...formData, name, bio};
+
+        setFormData(updatedData);
+
+        console.log(updatedData);
 
         try {
             const registerAcc = await axios.post(`${BACKEND_URL}/auth/sign-up`, {
-                ...formData
+                ...updatedData
             })
+            
             if (registerAcc.data) {
+                console.log("Token", registerAcc.data.data.token);
                 // setStep((prev) => prev + 1);
+
+                // setting token to localstorage
+                const token = registerAcc.data?.data?.token;
+                console.log(token);
+                localStorage.setItem('token', token);
+
                 navigate('/chat')
             }
         } catch (error) {
-            console.log("Error: Failed to save user data", error);
+            if(error instanceof AxiosError){
+                console.log("Error: Failed to save user data", error);
+                setError(error.response?.data?.message || 'Something went wrong, Please try again later.');
+            } else {
+                setError('An unexpected error occurred')
+            }
         }
     }
 
@@ -59,7 +78,7 @@ export const ProfileInfo = ({ formData, setStep, setFormData }: FormData) => {
 
             <div className="h-fit w-full flex justify-center items-center gap-3">
                 <input
-                    type="name"
+                    type="text"
                     className="border-b-2 focus:border-blue-700 w-58 focus:outline-0"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -69,8 +88,21 @@ export const ProfileInfo = ({ formData, setStep, setFormData }: FormData) => {
                 
                 <Smile size={20} />
             </div>
+
+            <div className="h-fit w-full flex justify-center items-center gap-3">
+                <input
+                    type="text"
+                    className="border-b-2 focus:border-blue-700 w-58 focus:outline-0"
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
+                    placeholder="Enter bio"
+                    name="bio"
+                />
+                
+                <Smile size={20} />
+            </div>
             <div className="h-fit w-fit flex flex-col gap-5 justify-center items-center" onClick={() => handleClick()}>
-                <p className="text-base text-red-600 font-semibold">{error}</p>
+                <p className="text-base text-center sm:px-10 md:px-15 text-red-600 font-semibold">{error}</p>
                 <NextButton />
             </div>
         </div>

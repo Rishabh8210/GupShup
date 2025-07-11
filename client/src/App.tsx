@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Error from './pages/Error'
 // import Profile from './pages/Profile'
 import Chat from './pages/Chat'
+import Status from './pages/Status'
 import { ChatScreen } from './components/Chat/chat-screen'
 import { ChatHome } from './components/Chat/chat-home'
 import NewChat from './pages/New Chat'
@@ -29,6 +30,7 @@ function App() {
             <Route path=":roomId" element={<ChatScreen />} />
           </Route>
           <Route path='/new-chat' element={<NewChat />} />
+          <Route path='/status' element={<Status />} />
           <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>

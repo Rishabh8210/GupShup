@@ -42,18 +42,18 @@ const LargeFooter = () => {
                 </div>
             </div>
 
-            <div className="h-fit w-full flex flex-col justify-between gap-7 items-center flex-wrap">
-                <div className="">
-                    <p className="text-white">@ {new Date().getFullYear()} Gupshup. All Right Reserved.</p>
+            <div className="h-fit w-full flex justify-between gap-5 items-center flex-wrap">
+                <div className="flex flex-col gap-3">
                     <a className="text-white" href="#">Privacy</a>
                     <a className="text-white" href="#">Terms</a>
+                    <p className="text-white">@ {new Date().getFullYear()} Gupshup. All Right Reserved.</p>
                 </div>
                 
-                <div>
-                    <a className="border-1 border-white rounded-full p-2 hover:bg-black " href=""><Twitter color="white"/></a>
-                    <a className="border-1 border-white rounded-full p-2 hover:bg-black " href=""><Instagram color="white"/></a>
-                    <a className="border-1 border-white rounded-full p-2 hover:bg-black " href=""><Linkedin color="white"/></a>
-                    <a className="border-1 border-white rounded-full p-2 hover:bg-black " href=""><Github color="white"/></a>
+                <div className="flex gap-7">
+                    <a className="border-1 border-white text-white rounded-full p-2 hover:bg-white hover:text-blue-950 " href=""><Twitter /></a>
+                    <a className="border-1 border-white text-white rounded-full p-2 hover:bg-white hover:text-blue-950 " href=""><Instagram /></a>
+                    <a className="border-1 border-white text-white rounded-full p-2 hover:bg-white hover:text-blue-950 " href=""><Linkedin /></a>
+                    <a className="border-1 border-white text-white rounded-full p-2 hover:bg-white hover:text-blue-950 " href=""><Github /></a>
                 </div>
                 
             </div>
