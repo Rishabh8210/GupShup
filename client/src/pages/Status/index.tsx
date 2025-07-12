@@ -1,7 +1,8 @@
-import { ChatHistory } from "../../components/Chat/chat-history"
 import { ChatSideNav } from "../../components/Chat/large-sidenav";
 import { Navigate } from "react-router"
 import { StatusPage } from "../../components/Status/status-user-cart";
+import { StatusList } from "../../components/Status/status-list";
+import { StatusHome } from "../../components/Status/status-home";
 
 const Chat = () => {
     const token = localStorage.getItem("token");
@@ -13,10 +14,9 @@ const Chat = () => {
     return (
         <div className="h-screen max-h-screen overflow-hidden w-full flex bg-[#020015]">
             <ChatSideNav />
-            
-            
-            <StatusPage />
-
+            <StatusList />
+            <StatusHome />
+            {/* <StatusPage /> */}
         </div>
     )
 }
