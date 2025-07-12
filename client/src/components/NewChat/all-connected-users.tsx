@@ -10,7 +10,7 @@ export const AllConnectedUsers = () => {
     const [search, setSearch] = useState(false);
     const [inputSearch, setInputSearch] = useState('');
 
-
+    const BACKEND_URL = import.meta.env.VITE_API_URL;
     const [allUsers, setAllUsers] = useState<any[]>([]);
 
     const token = localStorage.getItem('token');
@@ -26,7 +26,7 @@ export const AllConnectedUsers = () => {
         const fetchAllUsers = async () => {
             console.log(token);
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/chats', {
+                const response = await axios.get(`${BACKEND_URL}/chats`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
