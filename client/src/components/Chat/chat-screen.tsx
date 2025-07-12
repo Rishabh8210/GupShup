@@ -16,6 +16,8 @@ export const ChatScreen = () => {
     const [message, setMessage] = useState('');
     const ref = useChatScroll(allMessages);
 
+    const BACNKEND_URL = import.meta.env.VITE_API_URL;
+
     const token = localStorage.getItem('token');
     if (!token) {
         return <Navigate to={'/login'} replace />
@@ -37,7 +39,7 @@ export const ChatScreen = () => {
         }
 
         try {
-            const user = await axios.get(`http://localhost:3000/api/v1/users/${roomId}`, {
+            const user = await axios.get(`${BACNKEND_URL}/users/${roomId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
