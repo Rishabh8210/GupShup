@@ -11,6 +11,7 @@ import { ChatHome } from './components/Chat/chat-home'
 import NewChat from './pages/New Chat'
 import { SocketProvider } from './context/socket-context'
 import { Analytics } from '@vercel/analytics/react'
+import StatusView from './pages/Status View'
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
           </Route>
           <Route path='/new-chat' element={<NewChat />} />
           <Route path='/status' element={<Status />} />
+          <Route path='/status/:id' element={<StatusView />} />
           <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>

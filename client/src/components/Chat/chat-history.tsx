@@ -3,9 +3,8 @@ import { EllipsisVertical } from "lucide-react"
 import { Search } from "lucide-react"
 
 import { Link, useNavigate } from "react-router"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ChatList } from "./chat-list"
-import type { Socket } from "socket.io-client"
 import { useSocketContext } from "../../context/socket-context"
 
 
