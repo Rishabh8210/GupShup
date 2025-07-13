@@ -20,7 +20,7 @@ export const StatusList = () => {
                 chatHistory && chatHistory.map((chat, ind) => {
                     if(ind < 6)
                     return (
-                        <StatusCart key={ind} chat={chat} />
+                        <StatusCart key={ind} chat={chat} viewed={true} />
                     )
                 })
             }
