@@ -1,10 +1,9 @@
 import { ChatSideNav } from "../../components/Chat/large-sidenav";
 import { Navigate } from "react-router"
-import { StatusPage } from "../../components/Status/status-user-cart";
 import { StatusList } from "../../components/Status/status-list";
 import { StatusHome } from "../../components/Status/status-home";
 
-const Chat = () => {
+const Status = () => {
     const token = localStorage.getItem("token");
     
     if (!token) {
@@ -16,9 +15,8 @@ const Chat = () => {
             <ChatSideNav />
             <StatusList />
             <StatusHome />
-            {/* <StatusPage /> */}
         </div>
     )
 }
 
-export default Chat
+export default Status

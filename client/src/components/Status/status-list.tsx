@@ -35,8 +35,6 @@ export const StatusList = () => {
                 })
             }
         </div>
-
-        
     </div>
   )
 }
